@@ -1,3 +1,8 @@
+/***********************************************************************************************************************************
+                                          TEAM TREEHOUSE JS TECHDEGREE UNIT 2 PROJECT
+                                                lIST PAGINATION AND FILTERING
+***********************************************************************************************************************************/
+
 const studentList = document.getElementsByClassName("student-item cf");
 
 const showPage = (studentList, page) => {
