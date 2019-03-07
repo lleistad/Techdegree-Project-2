@@ -6,7 +6,7 @@
 const studentList = document.getElementsByClassName("student-item cf");
 
 const showPage = (list, page) => {
-  for (i = 0; i < list.length; i++) {
+  for (i = 0; i <= list.length; i++) {
     const maxIndex = (page * 10) - 1;
     const index = (page * 10) - 10;
     if (i >= index && i <= maxIndex) {
@@ -34,21 +34,21 @@ const appendPageLinks = (list) => {
     paginationDiv.appendChild(ul);
   
     //Add li and a tags for each page. Then add event listener to each a tag so it'll call the showPage function, & apply active class to only the the link clicked.
-    for (i = 0; i < totalNumberOfPages; i=+1) {
-      let currentPage = 1;
+    for (i = 0; i <= totalNumberOfPages; i++) {
       const li = document.createElement("li");
       const a = document.createElement("a");
-      a.innerHTML = currentPage;
+      let pageNumber = i+1;
+      a.innerHTML = pageNumber;
       li.appendChild(a);
       ul.appendChild(li);
-      currentPage++;
-        }
-    a.addEventListener('click', (e) => {
-          showPage(studentList, i);  
+      a.addEventListener('click', (e) => {
           a.classList.toggle("active", false);
-          Event.target.classList.toggle("active", true);                   
+          showPage(studentList, a);
+          event.target.classList.toggle("active", true); 
           });
+      
+    }
   }
-  
+
 showPage(studentList, 1);
 appendPageLinks(studentList);
