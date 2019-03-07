@@ -6,13 +6,13 @@
 const studentList = document.getElementsByClassName("student-item cf");
 
 const showPage = (list, page) => {
-  for (i = 0; i < studentList.length; i++) {
+  for (i = 0; i < list.length; i++) {
     const maxIndex = (page * 10) - 1;
     const index = (page * 10) - 10;
     if (i >= index && i <= maxIndex) {
-      studentList[i].style.display = "block";
+      list[i].style.display = "block";
     } else {
-        studentList[i].style.display = "none";
+        list[i].style.display = "none";
     }
   }
 }
@@ -50,5 +50,5 @@ const appendPageLinks = (list) => {
           });
   }
   
-showPage();
+showPage(studentList, 1);
 appendPageLinks(studentList);
