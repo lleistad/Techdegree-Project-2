@@ -45,16 +45,15 @@ const appendPageLinks = (list) => {
     }
   //activating showPage function when page links are clicked on
     const aTags = document.querySelectorAll('a');
-       for (i = 1; i < aTags.length; i++) {
-         aTags[i].addEventListener('click', (e) => {
-           console.log(aTags[i]);
-          //remove active class on a
-          showPage(studentList, i + 1);
-          event.target.classList.toggle("active", true);
-           //remove active class
-        });
+       aTags.forEach((button) =>{
+         button.addEventListener('click', (e) => {
+           button.classList.remove('active');
+           showPage(studentList, button.textContent);
+           e.target.classList.toggle('active', true);
+           button.classList.remove('active');
+         });
+       })
       }
-  }
 
 appendPageLinks(studentList);
 showPage(studentList, 1);
