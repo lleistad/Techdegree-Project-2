@@ -34,20 +34,24 @@ const appendPageLinks = (list) => {
     paginationDiv.appendChild(ul);
   
     //Add li and a tags for each page. Then add event listener to each a tag so it'll call the showPage function, & apply active class to only the the link clicked.
-    for (i = 0; i <= totalNumberOfPages; i++) {
+    for (i = 1; i <= totalNumberOfPages; i++) {
       const li = document.createElement("li");
       const a = document.createElement("a");
-      let pageNumber = i+1;
-      a.innerHTML = pageNumber;
+      let pageNumber = i + ' ';
+      a.textContent = pageNumber;
       li.appendChild(a);
       ul.appendChild(li);
-      a.addEventListener('click', (e) => {
-          a.classList.toggle("active", false);
-          showPage(studentList, a);
-          event.target.classList.toggle("active", true); 
-          });
-      
     }
+  //activating showPage function when page links are clicked on
+    const aTags = document.querySelectorAll(a);
+      for (i = 0; i < aTags.length; i++) {
+        aTags[i].addEventListener('click', (e) => {
+          aTag.className.remove('active');
+          showPage(studentList, i + 1);
+          event.target.classList.toggle("active", true);
+          aTag.className.remove('active');
+        });
+      }
   }
 
 showPage(studentList, 1);
