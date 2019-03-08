@@ -6,13 +6,14 @@
 const studentList = document.getElementsByClassName("student-item cf");
 
 const showPage = (list, page) => {
-  for (i = 0; i <= list.length; i++) {
+  for (i = 0; i < list.length; i++) {
     const maxIndex = (page * 10) - 1;
     const index = (page * 10) - 10;
+    let students = studentList[i];
     if (i >= index && i <= maxIndex) {
-      list[i].style.display = "block";
+      students.style.display = "block";
     } else {
-        list[i].style.display = "none";
+        students.style.display = "none";
     }
   }
 }
@@ -32,8 +33,8 @@ const appendPageLinks = (list) => {
     //Add a ul to the “pagination” div to store the pagination links
     const ul = document.createElement("ul");
     paginationDiv.appendChild(ul);
-  
-    //Add li and a tags for each page. Then add event listener to each a tag so it'll call the showPage function, & apply active class to only the the link clicked.
+
+  //Add li and a tags for each page. Then add event listener to each a tag so it'll call the showPage function, & apply active class to only the the link clicked.
     for (i = 1; i <= totalNumberOfPages; i++) {
       const li = document.createElement("li");
       const a = document.createElement("a");
@@ -43,16 +44,17 @@ const appendPageLinks = (list) => {
       ul.appendChild(li);
     }
   //activating showPage function when page links are clicked on
-    const aTags = document.querySelectorAll(a);
-      for (i = 0; i < aTags.length; i++) {
-        aTags[i].addEventListener('click', (e) => {
-          aTag.className.remove('active');
+    const aTags = document.querySelectorAll('a');
+       for (i = 1; i < aTags.length; i++) {
+         aTags[i].addEventListener('click', (e) => {
+           console.log(aTags[i]);
+          //remove active class on a
           showPage(studentList, i + 1);
           event.target.classList.toggle("active", true);
-          aTag.className.remove('active');
+           //remove active class
         });
       }
   }
 
-showPage(studentList, 1);
 appendPageLinks(studentList);
+showPage(studentList, 1);
